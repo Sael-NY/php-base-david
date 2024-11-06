@@ -1,5 +1,7 @@
 <?php
 
+require_once('../../config/config.php');
+
 $isAutenthicatedSuccessful = false;
 $isFromSubmited = false;
 

@@ -1,10 +1,9 @@
 <?php
 
-$articleJsonFilePath = '../model/articles.json';
+require_once('../../model/articles-repository.php');
+require_once('../../config/config.php');
 
-$articleJson = file_get_contents($articleJsonFilePath);
-
-$article = json_decode($articleJson, true);
+$articles = findArticles();
 
 function isStringTooLong($stringToCheck) {
     return mb_strlen($stringToCheck, 'UTF-8') > 50;
@@ -13,7 +12,6 @@ function isStringTooLong($stringToCheck) {
 function shortenString($stringToCut) {
     return substr($stringToCut, 0, 30);
 }
-
 
 require_once('../../view/public/list_articles-view.php');
 

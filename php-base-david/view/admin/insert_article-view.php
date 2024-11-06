@@ -15,6 +15,8 @@
         <label for="image">Image</label>
         <input type="text" name="image" />
 
+        <select name="catégorie" id="Roulette">
+            <option value="Catégorie">Politique</option>/select>
         <input type="submit"/>
 
     </form>

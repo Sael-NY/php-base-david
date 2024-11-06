@@ -1,5 +1,7 @@
 <?php require_once('../../controller/admin/partials/_header.php');
 require_once('../../service/authentification-service.php'); 
+require_once('../../config/config.php');
+
 
 redirectNotLoggedUser();
 ?>
