@@ -6,6 +6,17 @@ class Order {
     public $status = "cart";
     public $totalPrice;
     public $products = [];
+    public $address;
+
+    public function sendProduct() {
+        if ($this -> status === "card") {
+            $this -> customName = $customName;
+            $this -> products []= "Pringles";
+            $this -> $address = $address;
+            $this -> id = uniqid();
+        }
+    }
+
 
 
     public function __construct($customName) {
@@ -42,11 +53,11 @@ $order1 = new Order("Salim");
 $order1 -> addProduct();
 $order1 -> addProduct();
 $order1 -> addProduct();
+$order1 -> pay();
 
 $order2 = new Order("Timal");
 $order2->addProduct();
 $order2 -> pay();
 
-$order1 -> pay();
 
 var_dump($order1);
