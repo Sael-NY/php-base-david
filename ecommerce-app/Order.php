@@ -8,10 +8,9 @@ class Order {
     public $products = [];
     public $address;
 
-    public function sendProduct() {
-        if ($this -> status === "card") {
+    public function __construct($customName, $address) {
+        {
             $this -> customName = $customName;
-            $this -> products []= "Pringles";
             $this -> $address = $address;
             $this -> id = uniqid();
         }
