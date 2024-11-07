@@ -28,4 +28,33 @@ function insertArticle($articleCreated) {
     fclose($fp);
 }
 
-function findArticlesByCategory()
+<?php
+
+
+function findArticles() {
+    $articlesJsonFilePath = '../../model/articles.json';
+
+    $articlesJson = file_get_contents($articlesJsonFilePath);
+
+    $articles = json_decode($articlesJson, true);
+
+    return $articles;
+}
+
+function findArticlesByCategory($category) {
+    $articlesJsonFilePath = '../../model/articles.json';
+
+    $articlesJson = file_get_contents($articlesJsonFilePath);
+
+    $articles = json_decode($articlesJson, true);
+
+    $articlesInCategory = [];
+
+    foreach ($articles as $article) {
+        if ($article['category'] === $category) {
+            $articlesInCategory[] = $article;
+        }
+    }
+
+    return $articlesInCategory;
+}

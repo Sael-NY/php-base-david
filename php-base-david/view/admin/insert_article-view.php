@@ -4,7 +4,7 @@
 
     <h1>Créer un article</h1>
 
-    <form method="post">
+    <form method="get">
 
         <label for="title">Titre</label>
         <input type="text" name="title" />

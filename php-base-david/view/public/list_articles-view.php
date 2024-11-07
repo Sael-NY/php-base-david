@@ -6,7 +6,16 @@
 
     <p>Filtrer des articles</p>
 
+    <form method="get">
+        <label for="category">Categorie</label>
+        <select name="category">
+            <option nvalue="ecologie">Ecologie</option>
+            <option nvalue="ecologie">Politique</option>
+            <option nvalue="ecologie">Economie</option>
+        </select>
 
+        <input type="submit">
+    </form>
 
 
     <?php foreach ($articles as $article) { ?>
