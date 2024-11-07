@@ -23,7 +23,7 @@ class Order {
 
     public function deleteProduct() {
         if ($this -> status === "card") {
-            $this -> products []= "Pringles";
+            array_pop($this->products);
             $this -> totalPrice = -3
         }
     }
