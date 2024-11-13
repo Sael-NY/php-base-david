@@ -5,18 +5,21 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../public/asset.css">
     <title>Document</title>
 </head>
 <body>
 
+<p><?php echo $message; ?>
+<p>Commande numéro : <?php echo $order->getId(); ?></p>
 
-<header>
+<p>Produits : </p>
 
-    <h1>Sael's App</h1>
+<ul>
+    <?php foreach ($order -> getProducts() as $product) { ?>
 
+        <li><?php echo $product; ?></li>
 
-
-</header>
-
+     <?php } ?>
+</ul>
 </body>
+</html>

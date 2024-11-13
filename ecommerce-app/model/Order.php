@@ -15,7 +15,7 @@ class Order
         if (mb_strlen($customerName) < 3) {
             throw new Exception('Merci de remplir un nom correct');
         }
-        $this->status === 'cart';
+        $this->status = 'cart';
         $this->totalPrice = 0;
         $this->customerName = $customerName;
         $this->id = uniqid();
@@ -65,5 +65,21 @@ class Order
         } else {
             throw new Exception("La commande ne peux pas être expédiée. elle n'est pas encore payée");
         }
+    }
+
+    public function getId() {
+        return $this -> id;
+    }
+    
+    public function getProducts() {
+       return $this -> products;
+    }
+
+    public function getTotalPrice() {
+        return $this -> totalPrice;
+    }
+
+    public function getAddress() {
+        return $this -> shippingAdress;
     }
 }

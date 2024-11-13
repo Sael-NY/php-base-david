@@ -25,6 +25,8 @@
         <label>Nom</label>
         <input type="text" name="customerName">
 
+        <label>Adresse</label>
+        <input type="text" name="email">
         <button type="submit">Créer une commande</button>
 
     </form>

@@ -1,6 +1,7 @@
 <?php
 
-require_once('../controller/index-controller.php');
+require_once('../controller/OrderController.php');
+require_once('../controller/ErrorController.php');
 
 // récupère l'url actuelle
 $requestUri = $_SERVER['REQUEST_URI'];
@@ -12,12 +13,24 @@ $uri = parse_url($requestUri, PHP_URL_PATH);
 $endUri = str_replace('/ecommerce-app/public/', '', $uri);
 $endUri = trim($endUri, '/');
 
-
+$orderController = new OrderController();
 // en fonction de la valeur de $endUri on charge le bon contrôleur
 if ($endUri === "create-order") {
-    $indexController = new IndexController();
-    $indexController->index();
+    $orderController->createOrder();
+} else if ($endUri === "add-product"){
+    $orderController -> addProduct();
+
+} else if ($endUri === "remove-product"){
+    $orderController -> removeProduct();
+
+} else if ($endUri === "shipping-address"){
+    $orderController -> setShippingAddress();
+
 } else {
-    echo "<p>404 (Erreur à la page)</p>";
+    $errorController = new ErrorController();
+    $errorController -> notFound();
+
 }
+
+
 
