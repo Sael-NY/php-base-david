@@ -99,6 +99,9 @@ class OrderController {
                 try {
                     // Je donne la valeur form
                     $order->setShippingAddress($_POST['shippingAddress']);
+                    // je sauvegarde la nouvelle order
+                    $orderRepository = new OrderRepository();
+                    $orderRepository->persistOrder($order);
                     // j'affiche le message
                     $message = "Adresse ajoutée";
 
