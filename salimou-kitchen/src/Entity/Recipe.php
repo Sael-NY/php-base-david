@@ -29,9 +29,13 @@ class Recipe
     #[ORM\Column(type: Types::TEXT)]
     private ?string $instructions = null;
 
-
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'recipes')]
     private ?Category $category = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -48,6 +52,7 @@ class Recipe
 
         return $this;
     }
+
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
