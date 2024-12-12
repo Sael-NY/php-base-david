@@ -32,6 +32,9 @@ class Recipe
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'recipes')]
     private ?Category $category = null;
 
+    #[ORM\Column]
+    private ?bool $isPublished = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -110,6 +113,18 @@ class Recipe
     public function setCategory(?Category $category): void
     {
         $this->category = $category;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setPublished(bool $isPublished): static
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
     }
 
 

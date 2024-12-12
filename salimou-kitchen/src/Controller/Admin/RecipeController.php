@@ -74,7 +74,7 @@ class RecipeController extends AbstractController
         return $this->redirectToRoute('admin_list_recipes');
     }
 
-    #[Route('/admin/recipe/{id}/update', name: 'admin_recipe_show', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/admin/recipe/{id}/update', name: 'admin_recipe_update', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
 public function updateRecipe(int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager, ParameterBagInterface $parameterBag, Request $request): Response
     {
         $recipe = $recipeRepository->find($id);
