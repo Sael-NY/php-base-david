@@ -23,7 +23,7 @@ class Recipe
         maxMessage: 'Le titre ne doit pas faire plus de 10 caractères',
     )]
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Ce champs ne peut être vide')]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
