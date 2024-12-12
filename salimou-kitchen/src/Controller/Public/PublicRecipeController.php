@@ -35,9 +35,14 @@ class PublicRecipeController extends AbstractController
         ]);
     }
     #[Route('/recipes/search', name: 'create_recipe',requirements: ['id' => '/d'], methods: ['GET'])]
-    public function searchRecipes(Request $request): Response
+    public function searchRecipes(Request $request, RecipeRepository $recipeRepository): Response
     {
-        $search = $request->request->get('search');
-        dd($search);
+        $search = $request->query->get('search');
+        $recipes = $recipeRepository->FindBySearchInTitle($search);
+
+        return $this->render('public/recipe/search_recipe.html.twig', [
+            "recipes" => $recipes,
+            'search' => $search
+        ]);
     }
 }
