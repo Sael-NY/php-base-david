@@ -4,18 +4,12 @@ namespace App\Controller\Public;
 
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PublicRecipeController extends AbstractController
 {
-    #[Route('/public/recipe', name: 'app_public_recipe')]
-    public function index(): Response
-    {
-        return $this->render('public_recipe/index.html.twig', [
-            'controller_name' => 'PublicRecipeController',
-        ]);
-    }
     #[Route('/recipes', name: 'list_recipes', methods: ['GET'])]
     public function listPublishRecipes(RecipeRepository $recipeRepository): Response
     {
@@ -39,5 +33,11 @@ class PublicRecipeController extends AbstractController
         return $this->render('public/recipe/show_recipe.html.twig', [
             'recipe' => $recipe,
         ]);
+    }
+    #[Route('/recipes/search', name: 'create_recipe',requirements: ['id' => '/d'], methods: ['GET'])]
+    public function searchRecipes(Request $request): Response
+    {
+        $search = $request->request->get('search');
+        dd($search);
     }
 }
