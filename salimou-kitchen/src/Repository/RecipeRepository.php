@@ -18,10 +18,14 @@ class RecipeRepository extends ServiceEntityRepository
 
     public function findBySearchInTitle(string $search): array {
         $queryBuilder = $this->createQueryBuilder('recipe');
-
+            // Sélectionne l'entité Recipe
         $query = $queryBuilder -> select('recipe')
+                // Ajoute une condition pour les titres contenant le terme recherché
                 -> where('recipe.title LIKE :search')
+                // Définit le paramètre 'search' avec des jokers '%' autour de la valeur recherchée
+                // pour permettre une recherche partielle dans le titre
                 -> setParameter('search', '%'.$search.'%')
+                // Génére la requete
                 -> getQuery();
 
         return $query->getResult();

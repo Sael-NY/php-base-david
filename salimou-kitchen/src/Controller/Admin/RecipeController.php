@@ -27,18 +27,26 @@ class RecipeController extends AbstractController
 
         $adminRecipeForm->handleRequest($request);
 
-        if ($adminRecipeForm->isSubmitted()) {
+        if ($adminRecipeForm->isSubmitted() && $adminRecipeForm->isValid()) {
 
+            // je récupère le fichier envoyé dans le champs image du formulaire
             $recipeImage = $adminRecipeForm->get('image')->getData();
 
+            // s'il y a bien une image envoyée
             if ($recipeImage) {
-
+                // je génère un nom unique pour l'image, en gardant l'extension
+                // originale (.jpeg, .png etc)
                 $imageNewName = uniqid() . '.' . $recipeImage->guessExtension();
 
+                // je récupère grâce à la classe ParameterBag, le chemin
+                // vers la racine du projet
                 $rootDir = $parameterBag->get('kernel.project_dir');
-
+                // je génère le chemin vers le dossier uploads (dans le dossier public)
                 $uploadDir = $rootDir . '/public/assets/upload';
+                // je déplace mon image dans le dossier uploads, en lui donnant
+                // le nom unique
                 $recipeImage->move($uploadDir, $imageNewName);
+                // je stocke dans l'entité le nouveau nom de l'image
                 $recipe->setImage($imageNewName);
             }
 

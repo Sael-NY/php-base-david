@@ -27,7 +27,7 @@ class AdminRecipeType extends AbstractType
                 'choice_label' => 'title',
             ])
             ->add('isPublished')
-            ->add('Valider', SubmitType::class)
+            ->add('valider', SubmitType::class)
         ;
     }
 
