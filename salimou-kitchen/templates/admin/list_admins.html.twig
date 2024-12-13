@@ -1,0 +1,30 @@
+{% extends "admin/base.html.twig" %}
+
+
+{% block title %}Accueil | Admin{% endblock %}
+
+{% block body %}
+
+    <main>
+
+        <h1>Admin Sael</h1>
+
+        <h4>Voici la liste des admins :</h4>
+
+
+        {% for user in users %}
+
+        {{ user.id }}
+        {{ user.email }}
+            <td>
+                {% for role in user.roles %}
+                    {{ role }}
+                {% endfor %}
+            </td>
+
+    <a href=" {{ path ('delete_user', {id : user.id }) }}" >Supprimer</a>
+        {% endfor %}
+    </main>
+
+
+{% endblock %}

@@ -17,7 +17,7 @@ class LoginController extends AbstractController
         // Prend le champs de la derniere connexion si on fait une erreur
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('public/recipe/login.html.twig', [
+        return $this->render('public/login.html.twig', [
             'error' => $error,
             'lastUsername' => $lastUsername
         ]);

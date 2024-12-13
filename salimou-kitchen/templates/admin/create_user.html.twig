@@ -1,0 +1,29 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(userFormView) }}
+    <h3>Email</h3>
+    <div>
+        {{ form_label(userFormView.email) }}
+        {{ form_widget(userFormView.email) }}
+        {{ form_errors(userFormView.email) }}
+    </div>
+
+    <h3>Password</h3>
+    <div>
+        {{ form_label(userFormView.password) }}
+        {{ form_widget(userFormView.password) }}
+        {{ form_errors(userFormView.password) }}
+    </div>
+
+    <div>
+        {{ form_label(userFormView.roles) }}
+        {{ form_widget(userFormView.roles) }}
+        {{ form_errors(userFormView.roles) }}
+    </div>
+
+    <button type="submit">Enregistrer</button>
+
+    {{ form_end(userFormView) }}
+{% endblock %}
