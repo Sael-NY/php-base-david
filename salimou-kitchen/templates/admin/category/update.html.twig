@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block metatitle %} Modification{% endblock metatitle %}
+
+{% block body %}
+
+    {{ form_start(categoryFormView) }}
+
+    {{ form_widget(categoryFormView) }}
+
+    {{ form_end(categoryFormView) }}
+
+
+{% endblock body %}

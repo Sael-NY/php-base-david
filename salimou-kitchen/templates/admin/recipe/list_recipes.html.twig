@@ -14,6 +14,7 @@
         <td>{{ recipe.title }}</td>
         <td>{{ recipe.createdAt | date('d-m-Y') }}</td>
         <td><img width="100px" src="{{ asset('assets/upload/' ~ recipe.image) }}" alt=""></td>
+
         <td><a href="{{ path('admin_recipe_delete', {'id': recipe.id}) }}">Supprimer</a></td>
         <td><a href="{{ path('admin_recipe_update', {'id': recipe.id}) }}">Modifier</a></td>
     </table>

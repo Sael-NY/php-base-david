@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Recipe;
 
 use App\Entity\Recipe;
 use App\Form\AdminRecipeType;
@@ -113,6 +113,20 @@ public function updateRecipe(int $id, RecipeRepository $recipeRepository, Entity
         return $this->render('admin/recipe/update.html.twig', [
             'adminRecipeFormView' => $adminRecipeFormView,
             'recipe' => $recipe
+        ]);
+    }
+
+    #[Route('/category/{id}', name: 'recipes_category')]
+    public function recipesByCategory(int $id, CategoryRepository $categoryRepository)
+    {
+
+        $category = $categoryRepository->find($id);
+
+        $recipes = $category->getRecipes();
+
+        return $this->render('public/category/list_category.html.twig', [
+            'category' => $category,
+            'recipes' => $recipes,
         ]);
     }
 

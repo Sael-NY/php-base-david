@@ -21,13 +21,15 @@ class Category
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category', cascade: ['persist', 'remove'])]
     private ?Collection $recipes = null;
 
 
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+
     }
 
     public function getId(): ?int

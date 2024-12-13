@@ -18,7 +18,6 @@ class Recipe
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 5,
-        max: 10,
         minMessage: 'Le titre ne doit pas faire moins de 5 caractères',
         maxMessage: 'Le titre ne doit pas faire plus de 10 caractères',
     )]

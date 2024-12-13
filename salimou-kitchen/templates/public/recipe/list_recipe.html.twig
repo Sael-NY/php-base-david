@@ -12,7 +12,11 @@
 
             <article>
                 <p>{{ recipe.title }}</p>
-
+                <p>Catégorie :
+                    <a href="{{ path('recipes_category', {id: recipe.category.id}) }}">
+                        {{ recipe.category.title }}
+                    </a>
+                </p>
                 <img width="100px" src="{{ asset('assets/upload/' ~ recipe.image) }}" />
                 <a href="{{ path('show_recipe', {id: recipe.id}) }}">Voir la recette</a>
             </article>

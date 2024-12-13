@@ -1,0 +1,25 @@
+{% extends 'public/base.html.twig' %}
+
+{% block body %}
+    <h3>{{ category.title }}</h3>
+
+    <div>
+        <h5>Recettes par catégorie</h5>
+
+        <div>
+            {% for recipe in recipes %}
+                <div>
+                    <div>
+                        <img src="{{ asset('assets/uploads/' ~ recipe.image) }}" alt="{{ recipe.title }}">
+                        <div>
+                            <h5>{{ recipe.title }}</h5>
+                            <a href="{{ path('recipe', {id: recipe.id}) }}">Voir la recette</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a class="btn btn-outline-secondary w-100 mt-3" href="{{ path('recipes') }}">Retour à la liste des recettes</a>
+{% endblock %}

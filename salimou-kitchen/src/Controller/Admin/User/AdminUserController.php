@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\User;
 
 use App\Entity\User;
 use App\Form\UserType;
@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class AdminUserController extends AbstractController
@@ -63,11 +62,47 @@ public function create(UserPasswordHasherInterface $userPasswordHasher, Request 
     public function delete(int $id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager)
     {
         $user = $userRepository ->find($id);
+        $authenticatedUser = $this -> getUser();
+
+        if($id === $authenticatedUser-> getId() ){
+            $this->addFlash('success', "Vous ne pouvez pas supprimer cet utilisateur");
+            return $this->redirectToRoute('admin_list');
+        }
 
         $entityManager -> remove($user);
 
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_list');
+    }
+
+    #[Route('/admin/update/{id}', 'update_user', methods: ['GET', 'POST'])]
+public function update(int $id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher)
+    {
+        $user = $userRepository ->find($id);
+        $userForm = $this -> createForm(UserType::class, $user);
+        $userForm -> handleRequest($request);
+
+        if ($userForm -> isSubmitted() && $userForm -> isValid()) {
+            $password = $userForm->get('password')->getData();
+
+            if($password){
+
+                $hashedPassword = $userPasswordHasher->hashPassword($user, $password);
+                $user->setPassword($hashedPassword);
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+            return $this->redirectToRoute('admin_list');
+        }
+
+        $userFormView = $userForm->createView();
+
+        return $this->render('admin/update_user.html.twig',[
+            'userFormView' => $userFormView,
+        ]);
     }
 }

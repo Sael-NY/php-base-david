@@ -1,0 +1,29 @@
+{% extends "admin/base.html.twig" %}
+
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+
+    <main>
+
+        <h1>Liste Catégories | Sael</h1>
+
+        <h4>Voici la liste des catégories :</h4>
+
+
+        {% for category in categorys %}
+
+            {{ category.id }}
+            {{ category.title }}
+
+            <a href=" {{ path ('admin_update_category', {id : category.id }) }}" >Modifier</a>
+            <a href=" {{ path ('admin_delete_category', {id : category.id }) }}" >Delete</a>
+        {% endfor %}
+
+
+
+    </main>
+
+
+{% endblock %}

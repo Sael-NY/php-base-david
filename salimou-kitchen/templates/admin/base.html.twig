@@ -13,6 +13,9 @@
         <ul>
             <li><a href="{{ path('admin_create_recipe') }}">Créer une recettes</a></li>
             <li><a href="{{ path('admin_list_recipes') }}">Gérer des recettes</a></li>
+            <li>
+                <p><a href="{{ path('update_user', {id : app.user.id })}}">Connecté en tant que {{ app.user.email }}</a></p>
+            </li>
             <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
         </ul>
     </nav>

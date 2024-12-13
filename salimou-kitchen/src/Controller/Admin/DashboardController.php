@@ -10,7 +10,10 @@ class DashboardController extends AbstractController
     #[Route('/admin', 'admin_dashboard', methods: ['GET'])]
     public function index()
     {
+    $user = $this->getUser();
 
-        return $this->render('admin/dashboard.html.twig');
+        return $this->render('admin/dashboard.html.twig', [
+            'user' => $user
+        ]);
     }
 }
